@@ -1,32 +1,31 @@
-function unlockLetter(){
+function unlockLetter() {
 
-    const password=document.getElementById("password").value;
+    const password = document.getElementById("password").value;
 
-    if(password==="jamsen28"){
+    if (password === "jamsen28") {
 
-        document.getElementById("lockScreen").style.display="none";
+        // Hide lock screen
+        document.getElementById("lockScreen").style.display = "none";
 
-        document.getElementById("galleryScreen").style.display="flex";
+        // Show gallery
+        document.getElementById("galleryScreen").style.display = "flex";
 
-        document.getElementById("bgMusic").play();
+        // Play music
+        const music = document.getElementById("bgMusic");
+        music.play().catch(err => console.log(err));
 
-        const photos=document.querySelectorAll(".photo");
+        // Show photos one by one
+        const photos = document.querySelectorAll(".photo");
 
-        photos.forEach((photo,index)=>{
-
-            setTimeout(()=>{
-
+        photos.forEach((photo, index) => {
+            setTimeout(() => {
                 photo.classList.add("show");
-
-            },index*1800);
-
+            }, index * 1800);
         });
 
-    }
+    } else {
 
-    else{
-
-        document.getElementById("error").innerHTML="Wrong password 💔";
+        document.getElementById("error").innerHTML = "Wrong password 💔";
 
     }
 
