@@ -214,13 +214,13 @@ function startCountdown(){
             clearInterval(countdown);
 
 
-            countdownScreen.classList.add("hidden");
+countdownScreen.classList.add("hidden");
 
+videoScreen.classList.remove("hidden");
 
-            videoScreen.classList.remove("hidden");
+fadeOutMusic();
 
-
-            loveVideo.play();
+loveVideo.play();
 
 
         }
@@ -274,3 +274,25 @@ function createHeart(){
 
 
 setInterval(createHeart,350);
+
+function fadeOutMusic(){
+
+    let fade = setInterval(function(){
+
+        if(music.volume > 0.05){
+
+            music.volume -= 0.05;
+
+        }else{
+
+            music.volume = 0;
+
+            music.pause();
+
+            clearInterval(fade);
+
+        }
+
+    },200);
+
+}
