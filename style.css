@@ -466,3 +466,59 @@ button:hover{
     box-shadow:0 15px 40px rgba(0,0,0,.2);
 
 }
+
+/* ===========================
+   COUNTDOWN
+=========================== */
+
+#countdownScreen{
+
+    background:#ffd9ec;
+
+}
+
+.countdownBox{
+
+    text-align:center;
+
+}
+
+#countdownNumber{
+
+    font-size:180px;
+
+    color:#ff4d94;
+
+    font-family:'Pacifico',cursive;
+
+    animation:pop .8s infinite;
+
+}
+
+.countdownBox p{
+
+    font-size:28px;
+
+    color:#ff4d94;
+
+}
+
+@keyframes pop{
+
+    0%{
+
+        transform:scale(.7);
+
+        opacity:.5;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
