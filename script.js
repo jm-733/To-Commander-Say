@@ -119,7 +119,7 @@ function typeLetter(){
 
 function typing(){
 
-    if(i<letter.length){
+    if(i < letter.length){
 
         typedLetter.innerHTML += letter.charAt(i);
 
@@ -129,6 +129,21 @@ function typing(){
 
     }
 
+    else{
+
+        setTimeout(function(){
+
+            letterScreen.classList.add("hidden");
+
+            videoScreen.classList.remove("hidden");
+
+            document.getElementById("loveVideo").play();
+
+        },3000);
+
+    }
+
+}
 }
 
 // ===============================
