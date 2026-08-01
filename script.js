@@ -1,31 +1,40 @@
-function unlockLetter() {
+const button = document.getElementById("unlockBtn");
 
-    const password = document.getElementById("password").value;
+button.addEventListener("click", unlockLetter);
 
-    if (password === "jamsen28") {
+function unlockLetter(){
 
-        // Hide lock screen
-        document.getElementById("lockScreen").style.display = "none";
+    const password = document.getElementById("password").value.trim();
 
-        // Show gallery
-        document.getElementById("galleryScreen").style.display = "flex";
+    if(password === "jamsen28"){
 
-        // Play music
+        document.getElementById("lockScreen").classList.add("hidden");
+
+        document.getElementById("galleryScreen").classList.remove("hidden");
+
         const music = document.getElementById("bgMusic");
-        music.play().catch(err => console.log(err));
 
-        // Show photos one by one
-        const photos = document.querySelectorAll(".photo");
-
-        photos.forEach((photo, index) => {
-            setTimeout(() => {
-                photo.classList.add("show");
-            }, index * 1800);
+        music.play().catch(function(error){
+            console.log(error);
         });
 
-    } else {
+        const photos = document.querySelectorAll(".photo");
 
-        document.getElementById("error").innerHTML = "Wrong password 💔";
+        photos.forEach(function(photo,index){
+
+            setTimeout(function(){
+
+                photo.classList.add("show");
+
+            },index*1500);
+
+        });
+
+    }
+
+    else{
+
+        document.getElementById("error").textContent = "Wrong password 💔";
 
     }
 
