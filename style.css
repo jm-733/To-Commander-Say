@@ -140,21 +140,11 @@ button:hover{
 }
 
 .photo{
-
     width:220px;
-
     height:220px;
-
     object-fit:cover;
-
     border-radius:20px;
-
-    opacity:0;
-
-    transform:scale(.7);
-
-    transition:1s;
-
+    display:block;
 }
 
 .photo.show{
