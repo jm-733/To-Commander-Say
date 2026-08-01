@@ -4,14 +4,15 @@ function unlockLetter(){
 
     if(password === "jamsen28"){
 
-        alert("Unlocked ❤️");
+        document.getElementById("lockScreen").style.display = "none";
+
+        document.getElementById("galleryScreen").style.display = "flex";
 
     }
 
     else{
 
-        document.getElementById("error").innerHTML =
-        "Wrong password 💔";
+        document.getElementById("error").innerHTML = "Wrong password 💔";
 
     }
 
