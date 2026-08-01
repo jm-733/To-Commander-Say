@@ -1,32 +1,40 @@
 // ===============================
-// PASSWORD BUTTON
+// ELEMENTS
 // ===============================
+
+const unlockBtn = document.getElementById("unlockBtn");
+const passwordInput = document.getElementById("password");
+const error = document.getElementById("error");
 
 const lockScreen = document.getElementById("lockScreen");
 const galleryScreen = document.getElementById("galleryScreen");
 const continueScreen = document.getElementById("continueScreen");
 const letterScreen = document.getElementById("letterScreen");
+const countdownScreen = document.getElementById("countdownScreen");
 const videoScreen = document.getElementById("videoScreen");
 
+const countdownNumber = document.getElementById("countdownNumber");
+
 const music = document.getElementById("bgMusic");
+const loveVideo = document.getElementById("loveVideo");
 
 const photos = document.querySelectorAll(".photo");
 
 const typedLetter = document.getElementById("typedLetter");
 
-const loveVideo = document.getElementById("loveVideo");
-const countdownScreen = document.getElementById("countdownScreen");
-const countdownNumber = document.getElementById("countdownNumber");
+const hearts = document.getElementById("hearts");
+
 
 // ===============================
-// UNLOCK
+// UNLOCK PASSWORD
 // ===============================
 
 unlockBtn.addEventListener("click", unlockLetter);
 
-passwordInput.addEventListener("keypress", function(e){
 
-    if(e.key === "Enter"){
+passwordInput.addEventListener("keypress", function(event){
+
+    if(event.key === "Enter"){
 
         unlockLetter();
 
@@ -34,34 +42,41 @@ passwordInput.addEventListener("keypress", function(e){
 
 });
 
+
 function unlockLetter(){
 
     if(passwordInput.value.trim() !== "jamsen28"){
 
-        error.textContent = "Wrong password 💔";
+        error.innerHTML = "Wrong password 💔";
 
         return;
 
     }
 
-    error.textContent = "";
+
+    error.innerHTML = "";
+
 
     lockScreen.classList.add("hidden");
 
+
     galleryScreen.classList.remove("hidden");
+
 
     music.play().catch(function(){
 
-        console.log("Music autoplay blocked.");
+        console.log("Music requires user interaction.");
 
     });
+
 
     showPhotos();
 
 }
 
+
 // ===============================
-// PHOTO SLIDESHOW
+// SHOW PHOTOS ONE BY ONE
 // ===============================
 
 function showPhotos(){
@@ -70,111 +85,192 @@ function showPhotos(){
 
         setTimeout(function(){
 
-    letterScreen.classList.add("hidden");
+            photo.classList.add("show");
 
-    countdownScreen.classList.remove("hidden");
+        }, index * 1800);
 
-    let count = 3;
+    });
 
-    countdownNumber.innerHTML = count;
 
-    const timer = setInterval(function(){
+    let photoDuration = (photos.length * 1800) + 2000;
 
-        count--;
 
-        if(count > 0){
+    setTimeout(function(){
 
-            countdownNumber.innerHTML = count;
+        galleryScreen.classList.add("hidden");
 
-        }else{
+        continueScreen.classList.remove("hidden");
 
-            clearInterval(timer);
 
-            countdownScreen.classList.add("hidden");
+    }, photoDuration);
 
-            videoScreen.classList.remove("hidden");
+}
 
-            loveVideo.play();
-
-        }
-
-    },1000);
-
-},2000);
 
 // ===============================
-// CLICK TO CONTINUE
+// CLICK TO READ LETTER
 // ===============================
 
-continueScreen.addEventListener("click",function(){
+continueScreen.addEventListener("click", function(){
+
 
     continueScreen.classList.add("hidden");
 
+
     letterScreen.classList.remove("hidden");
 
-    typeLetter();
+
+    startTyping();
+
 
 });
 
+
 // ===============================
-// TYPEWRITER
+// TYPE LETTER
 // ===============================
 
-let i=0;
+let letterIndex = 0;
 
-function typing(){
 
-    if(i < letter.length){
+function startTyping(){
 
-        typedLetter.innerHTML += letter.charAt(i);
+    typedLetter.innerHTML = "";
 
-        i++;
+    letterIndex = 0;
 
-        setTimeout(typing,25);
+    typeWriter();
+
+}
+
+
+
+function typeWriter(){
+
+    if(letterIndex < letter.length){
+
+
+        typedLetter.innerHTML += letter.charAt(letterIndex);
+
+
+        letterIndex++;
+
+
+        setTimeout(typeWriter,25);
+
 
     }else{
 
+
         setTimeout(function(){
 
-            letterScreen.classList.add("hidden");
 
-            videoScreen.classList.remove("hidden");
+            startCountdown();
 
-            loveVideo.play();
 
         },3000);
 
+
     }
+
 }
+
+
+// ===============================
+// COUNTDOWN 3 2 1
+// ===============================
+
+function startCountdown(){
+
+
+    letterScreen.classList.add("hidden");
+
+
+    countdownScreen.classList.remove("hidden");
+
+
+    let count = 3;
+
+
+    countdownNumber.innerHTML = count;
+
+
+
+    let countdown = setInterval(function(){
+
+
+        count--;
+
+
+        if(count > 0){
+
+
+            countdownNumber.innerHTML = count;
+
+
+        }else{
+
+
+            clearInterval(countdown);
+
+
+            countdownScreen.classList.add("hidden");
+
+
+            videoScreen.classList.remove("hidden");
+
+
+            loveVideo.play();
+
+
+        }
+
+
+    },1000);
+
+
+}
+
 
 // ===============================
 // FLOATING HEARTS
 // ===============================
 
-const hearts=document.getElementById("hearts");
-
 function createHeart(){
 
-    const heart=document.createElement("div");
 
-    heart.className="heart";
+    const heart = document.createElement("div");
 
-    heart.innerHTML="💗";
 
-    heart.style.left=Math.random()*100+"vw";
+    heart.className = "heart";
 
-    heart.style.fontSize=(20+Math.random()*25)+"px";
 
-    heart.style.animationDuration=(6+Math.random()*4)+"s";
+    heart.innerHTML = "💗";
+
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+
+    heart.style.fontSize = (20 + Math.random() * 25) + "px";
+
+
+    heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
 
     hearts.appendChild(heart);
 
+
+
     setTimeout(function(){
+
 
         heart.remove();
 
+
     },10000);
 
+
 }
+
 
 setInterval(createHeart,350);
