@@ -142,7 +142,7 @@ function typing(){
         },3000);
 
     }
-
+const videoScreen = document.getElementById("videoScreen");
 }
 
 // ===============================
