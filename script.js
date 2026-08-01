@@ -15,6 +15,8 @@ const photos = document.querySelectorAll(".photo");
 const typedLetter = document.getElementById("typedLetter");
 
 const loveVideo = document.getElementById("loveVideo");
+const countdownScreen = document.getElementById("countdownScreen");
+const countdownNumber = document.getElementById("countdownNumber");
 
 // ===============================
 // UNLOCK
@@ -68,23 +70,37 @@ function showPhotos(){
 
         setTimeout(function(){
 
-            photo.classList.add("show");
+    letterScreen.classList.add("hidden");
 
-        },index*1800);
+    countdownScreen.classList.remove("hidden");
 
-    });
+    let count = 3;
 
-    const totalTime = (photos.length*1800)+2000;
+    countdownNumber.innerHTML = count;
 
-    setTimeout(function(){
+    const timer = setInterval(function(){
 
-        galleryScreen.classList.add("hidden");
+        count--;
 
-        continueScreen.classList.remove("hidden");
+        if(count > 0){
 
-    },totalTime);
+            countdownNumber.innerHTML = count;
 
-}
+        }else{
+
+            clearInterval(timer);
+
+            countdownScreen.classList.add("hidden");
+
+            videoScreen.classList.remove("hidden");
+
+            loveVideo.play();
+
+        }
+
+    },1000);
+
+},2000);
 
 // ===============================
 // CLICK TO CONTINUE
