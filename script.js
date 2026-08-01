@@ -2,20 +2,19 @@
 // PASSWORD BUTTON
 // ===============================
 
-const unlockBtn = document.getElementById("unlockBtn");
-const passwordInput = document.getElementById("password");
-const error = document.getElementById("error");
-
 const lockScreen = document.getElementById("lockScreen");
 const galleryScreen = document.getElementById("galleryScreen");
 const continueScreen = document.getElementById("continueScreen");
 const letterScreen = document.getElementById("letterScreen");
+const videoScreen = document.getElementById("videoScreen");
 
 const music = document.getElementById("bgMusic");
 
 const photos = document.querySelectorAll(".photo");
 
 const typedLetter = document.getElementById("typedLetter");
+
+const loveVideo = document.getElementById("loveVideo");
 
 // ===============================
 // UNLOCK
@@ -107,16 +106,6 @@ continueScreen.addEventListener("click",function(){
 
 let i=0;
 
-function typeLetter(){
-
-    typedLetter.innerHTML="";
-
-    i=0;
-
-    typing();
-
-}
-
 function typing(){
 
     if(i < letter.length){
@@ -127,9 +116,7 @@ function typing(){
 
         setTimeout(typing,25);
 
-    }
-
-    else{
+    }else{
 
         setTimeout(function(){
 
@@ -137,12 +124,11 @@ function typing(){
 
             videoScreen.classList.remove("hidden");
 
-            document.getElementById("loveVideo").play();
+            loveVideo.play();
 
         },3000);
 
     }
-const videoScreen = document.getElementById("videoScreen");
 }
 
 // ===============================
