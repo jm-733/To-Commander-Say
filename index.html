@@ -7,24 +7,37 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- LOCK SCREEN -->
-<div id="lockScreen" class="screen">
+<!-- Floating Hearts -->
+<div id="hearts"></div>
+
+<!-- ========================= -->
+<!-- PASSWORD SCREEN -->
+<!-- ========================= -->
+
+<section id="lockScreen" class="screen">
 
     <div class="card">
 
-        <h1>🔒💗</h1>
+        <div class="lockIcon">🔒💗</div>
 
-        <h2>To My Commander</h2>
+        <h1>To My Commander</h1>
 
-        <p>This letter is locked.</p>
+        <p class="subtitle">
+            This letter is locked.
+            <br>
+            Only you can open it.
+        </p>
 
         <input
-            type="password"
             id="password"
+            type="password"
             placeholder="Enter Password">
 
         <button id="unlockBtn">
@@ -35,31 +48,106 @@
 
     </div>
 
-</div>
+</section>
 
-<!-- GALLERY -->
-<div id="galleryScreen" class="screen hidden">
+<!-- ========================= -->
+<!-- PHOTO GALLERY -->
+<!-- ========================= -->
 
-    <h1 class="title">Our Memories ❤️</h1>
+<section id="galleryScreen" class="screen hidden">
+
+    <h2 class="galleryTitle">
+        Our Memories ❤️
+    </h2>
 
     <div class="gallery">
 
-<img src="images/photo1.jpg" class="photo">
-<img src="images/photo2.jpg" class="photo">
-<img src="images/photo3.jpg" class="photo">
-<img src="images/photo4.jpg" class="photo">
-<img src="images/photo5.jpg" class="photo">
+        <img src="images/photo1.jpg" class="photo">
+
+        <img src="images/photo2.jpg" class="photo">
+
+        <img src="images/photo3.jpg" class="photo">
+
+        <img src="images/photo4.jpg" class="photo">
+
+        <img src="images/photo5.jpg" class="photo">
 
     </div>
 
-</div>
+</section>
+
+<!-- ========================= -->
+<!-- CLICK TO CONTINUE -->
+<!-- ========================= -->
+
+<section id="continueScreen" class="screen hidden">
+
+    <div class="continueBox">
+
+        <h2>❤️</h2>
+
+        <h1>Click Anywhere</h1>
+
+        <p>to read my letter...</p>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- LOVE LETTER -->
+<!-- ========================= -->
+
+<section id="letterScreen" class="screen hidden">
+
+    <div class="letter">
+
+        <h1>Hi Say,</h1>
+
+        <div id="typedLetter"></div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- MUSIC -->
+<!-- ========================= -->
 
 <audio id="bgMusic" loop>
     <source src="music/song.mp3" type="audio/mpeg">
 </audio>
 
+<!-- ========================= -->
+<!-- LETTER TEXT -->
+<!-- ========================= -->
+
+<script>
+
+const letter = `
+
+I know you're not really fond of handwritten letters, so here I am, trying to fit into something you're interested in.
+
+We're not a typical couple, yet I can confidently say we're the best. Please know that I appreciate you, and I see you. I notice your quiet ways of caring, the little things you do just to make me laugh, and the motivation you give me, even when it doesn't seem obvious. I see your silent support, and I see everything you do.
+
+Thank you for being the person I can always rely on. Thank you for all the sacrifices you've made just to make my burdens a little lighter. Thank you for the little considerations, like when your head was aching and you really wanted a massage, yet you chose to endure it so I could sleep because I had work later. Thank you for understanding me when I needed it the most. It may not always come in the most normal way, but I appreciate it more than you know.
+
+I'll keep trying my best to understand the words you never say and the lines in your head that you hoped I'd understand.
+
+Let's not waste this love.
+Let's fight for it.
+
+Palagi.
+
+Yours,
+
+Zam ❤️
+
+`;
+
+</script>
+
 <script src="script.js"></script>
 
 </body>
 </html>
-<script src="script.js"></script>
