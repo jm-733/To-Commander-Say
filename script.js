@@ -1,41 +1,164 @@
-const button = document.getElementById("unlockBtn");
+// ===============================
+// PASSWORD BUTTON
+// ===============================
 
-button.addEventListener("click", unlockLetter);
+const unlockBtn = document.getElementById("unlockBtn");
+const passwordInput = document.getElementById("password");
+const error = document.getElementById("error");
 
-function unlockLetter(){
+const lockScreen = document.getElementById("lockScreen");
+const galleryScreen = document.getElementById("galleryScreen");
+const continueScreen = document.getElementById("continueScreen");
+const letterScreen = document.getElementById("letterScreen");
 
-    const password = document.getElementById("password").value.trim();
+const music = document.getElementById("bgMusic");
 
-    if(password === "jamsen28"){
+const photos = document.querySelectorAll(".photo");
 
-        document.getElementById("lockScreen").classList.add("hidden");
+const typedLetter = document.getElementById("typedLetter");
 
-        document.getElementById("galleryScreen").classList.remove("hidden");
+// ===============================
+// UNLOCK
+// ===============================
 
-        const music = document.getElementById("bgMusic");
+unlockBtn.addEventListener("click", unlockLetter);
 
-        music.play().catch(function(error){
-            console.log(error);
-        });
+passwordInput.addEventListener("keypress", function(e){
 
-        const photos = document.querySelectorAll(".photo");
+    if(e.key === "Enter"){
 
-        photos.forEach(function(photo,index){
-
-            setTimeout(function(){
-
-                photo.classList.add("show");
-
-            },index*1500);
-
-        });
+        unlockLetter();
 
     }
 
-    else{
+});
 
-        document.getElementById("error").textContent = "Wrong password 💔";
+function unlockLetter(){
+
+    if(passwordInput.value.trim() !== "jamsen28"){
+
+        error.textContent = "Wrong password 💔";
+
+        return;
+
+    }
+
+    error.textContent = "";
+
+    lockScreen.classList.add("hidden");
+
+    galleryScreen.classList.remove("hidden");
+
+    music.play().catch(function(){
+
+        console.log("Music autoplay blocked.");
+
+    });
+
+    showPhotos();
+
+}
+
+// ===============================
+// PHOTO SLIDESHOW
+// ===============================
+
+function showPhotos(){
+
+    photos.forEach(function(photo,index){
+
+        setTimeout(function(){
+
+            photo.classList.add("show");
+
+        },index*1800);
+
+    });
+
+    const totalTime = (photos.length*1800)+2000;
+
+    setTimeout(function(){
+
+        galleryScreen.classList.add("hidden");
+
+        continueScreen.classList.remove("hidden");
+
+    },totalTime);
+
+}
+
+// ===============================
+// CLICK TO CONTINUE
+// ===============================
+
+continueScreen.addEventListener("click",function(){
+
+    continueScreen.classList.add("hidden");
+
+    letterScreen.classList.remove("hidden");
+
+    typeLetter();
+
+});
+
+// ===============================
+// TYPEWRITER
+// ===============================
+
+let i=0;
+
+function typeLetter(){
+
+    typedLetter.innerHTML="";
+
+    i=0;
+
+    typing();
+
+}
+
+function typing(){
+
+    if(i<letter.length){
+
+        typedLetter.innerHTML += letter.charAt(i);
+
+        i++;
+
+        setTimeout(typing,25);
 
     }
 
 }
+
+// ===============================
+// FLOATING HEARTS
+// ===============================
+
+const hearts=document.getElementById("hearts");
+
+function createHeart(){
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+
+    heart.innerHTML="💗";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.fontSize=(20+Math.random()*25)+"px";
+
+    heart.style.animationDuration=(6+Math.random()*4)+"s";
+
+    hearts.appendChild(heart);
+
+    setTimeout(function(){
+
+        heart.remove();
+
+    },10000);
+
+}
+
+setInterval(createHeart,350);
