@@ -144,7 +144,6 @@ function typing(){
     }
 
 }
-}
 
 // ===============================
 // FLOATING HEARTS
