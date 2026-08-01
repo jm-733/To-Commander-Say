@@ -1,7 +1,7 @@
 // ===============================
 // ELEMENTS
 // ===============================
-
+const finalScreen = document.getElementById("finalScreen");
 const unlockBtn = document.getElementById("unlockBtn");
 const passwordInput = document.getElementById("password");
 const error = document.getElementById("error");
@@ -222,6 +222,14 @@ fadeOutMusic();
 
 loveVideo.play();
 
+loveVideo.onended = function(){
+
+    videoScreen.classList.add("hidden");
+
+    finalScreen.classList.remove("hidden");
+
+};
+
 
         }
 
@@ -286,8 +294,6 @@ function fadeOutMusic(){
         }else{
 
             music.volume = 0;
-
-            music.pause();
 
             clearInterval(fade);
 
